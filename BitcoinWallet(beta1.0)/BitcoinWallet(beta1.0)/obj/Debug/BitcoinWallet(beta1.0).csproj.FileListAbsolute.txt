@@ -1,0 +1,2 @@
+C:\Users\averem\Desktop\Bitcoin\BitcoinWallet(beta1.0)\BitcoinWallet(beta1.0)\bin\Debug\BitcoinWallet(beta1.0).exe.config
+C:\Users\averem\Desktop\BitcoinWallet\BitcoinWallet(beta1.0)\BitcoinWallet(beta1.0)\bin\Debug\BitcoinWallet(beta1.0).exe.config
