@@ -4,11 +4,11 @@ namespace BitcoinWallet_beta1._0_
 {
     public class Wallet
     {
+        private Key _privateKey { get; set; }
         public Wallet()
         {
             GenerateNewKey();
         }
-        private Key _privateKey { get; set; }
 
         // generate a random private key
         public void GenerateNewKey()
@@ -28,6 +28,15 @@ namespace BitcoinWallet_beta1._0_
         {
             PubKey publicKey = GetPublicKey();
             return publicKey.GetAddress(ScriptPubKeyType.Legacy, Network.TestNet);
+        }
+
+        // get bitcoin wallet test adress (with fake bitcoins)
+        public Script GetScriptPubKey()
+        {
+            var publicKeyHash = new KeyId(GetPublicKey().ToString());
+            var testNetAddress = publicKeyHash.GetAddress(Network.TestNet);
+
+            return testNetAddress.ScriptPubKey;
         }
     }
 }
