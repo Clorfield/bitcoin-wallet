@@ -37,13 +37,15 @@
       <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.1.0.0\lib\netstandard1.1\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NBitcoin, Version=5.0.33.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NBitcoin.5.0.33\lib\net452\NBitcoin.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NBitcoin, Version=5.0.27.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NBitcoin.5.0.27\lib\net452\NBitcoin.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="QBitNinja.Client, Version=1.0.3.52, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QBitNinja.Client.1.0.3.52\lib\net452\QBitNinja.Client.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -62,14 +64,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\MoneyTransferBl.cs" />
+    <Compile Include="Enums\NetworkTypes.cs" />
+    <Compile Include="Enums\TransactionActions.cs" />
+    <Compile Include="Interfaces\IMoneyTransferBl.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\OutputInfo.cs" />
+    <Compile Include="Models\TransactionInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransactionClient.cs" />
+    <Compile Include="Wallet.cs" />
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
