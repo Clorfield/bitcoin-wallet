@@ -64,6 +64,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\MoneyTransferBl.cs" />
+    <Compile Include="Enums\NetworkTypes.cs" />
+    <Compile Include="Enums\TransactionActions.cs" />
+    <Compile Include="Interfaces\IMoneyTransferBl.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>

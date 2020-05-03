@@ -1,13 +1,21 @@
-﻿using NBitcoin;
+﻿using BitcoinWallet_beta1._0_.Enums;
+using NBitcoin;
 
 namespace BitcoinWallet_beta1._0_
 {
     public class Wallet
     {
         private Key _privateKey { get; set; }
+        private Network _networkType { get; set; } = Network.TestNet;
         public Wallet()
         {
             GenerateNewKey();
+        }
+
+        // changing network type for wallet
+        public void ChangeNetworkType(NetworkTypes networkType)
+        {
+            _networkType = networkType == NetworkTypes.TestNet ? Network.TestNet : Network.Main;
         }
 
         // generate a random private key
@@ -23,18 +31,18 @@ namespace BitcoinWallet_beta1._0_
             return _privateKey.PubKey;
         }
 
-        // get bitcoin wallet test adress (with fake bitcoins)
+        // get bitcoin wallet adress
         public BitcoinAddress GetBitcoinAdress()
         {
             PubKey publicKey = GetPublicKey();
-            return publicKey.GetAddress(ScriptPubKeyType.Legacy, Network.TestNet);
+            return publicKey.GetAddress(ScriptPubKeyType.Legacy, _networkType);
         }
 
-        // get bitcoin wallet test adress (with fake bitcoins)
+        // get public script key
         public Script GetScriptPubKey()
         {
             var publicKeyHash = new KeyId(GetPublicKey().ToString());
-            var testNetAddress = publicKeyHash.GetAddress(Network.TestNet);
+            var testNetAddress = publicKeyHash.GetAddress(_networkType);
 
             return testNetAddress.ScriptPubKey;
         }
