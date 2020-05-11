@@ -5,6 +5,7 @@ using QBitNinja.Client;
 using QBitNinja.Client.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BitcoinWallet_beta1._0_
 {
@@ -48,6 +49,7 @@ namespace BitcoinWallet_beta1._0_
             GetTransactionResponse transactionResponse = GetTransactionResponseObject(transactionId);
 
             TransactionInfo transactionInfo = new TransactionInfo();
+            transactionInfo.transactionType = actionType;
             switch (actionType)
             {
                 case TransactionActions.ReceiveCoins:
@@ -98,6 +100,54 @@ namespace BitcoinWallet_beta1._0_
         {
             Money fee = transaction.GetFee(coins.ToArray());
             return fee;
+        }
+
+        // get balance for bitcoin public adress
+        public decimal GetBallance(BitcoinAddress adress)
+        {
+            var unspentCoins = GetUnspentCoins(adress);
+            var balance = unspentCoins.Sum(x => x.Amount.ToDecimal(MoneyUnit.BTC));
+
+            return balance;
+        }
+
+        // get unspent coins
+        public List<Coin> GetUnspentCoins(BitcoinAddress adress)
+        {
+            var balanceModel = _client.GetBalance(dest: adress, unspentOnly: true).Result;
+            if (balanceModel.Operations.Count == 0)
+                throw new Exception("No coins to spend");
+            var unspentCoins = new List<Coin>();
+            foreach (var operation in balanceModel.Operations)
+            {
+                unspentCoins.AddRange(operation.ReceivedCoins.Select(coin => coin as Coin));
+            }
+
+            return unspentCoins;
+        }
+
+        // check if adress owner has enough coins to spend
+        public bool HasEnoughCoins(Money totalOutAmount, BitcoinAddress adress)
+        {
+            var unspentCoins =GetUnspentCoins(adress);
+            HashSet<Coin> coinsToSpend = new HashSet<Coin>();
+            var hasEnough = false;
+            foreach (var coin in unspentCoins.OrderByDescending(x => x.Amount))
+            {
+                coinsToSpend.Add(coin);
+                // if doesn't reach amount, continue adding next coin
+                if (coinsToSpend.Sum(x => x.Amount) < totalOutAmount)
+                {
+                    continue;
+                }
+                else
+                {
+                    hasEnough = true;
+                    break;
+                }
+            }
+
+            return hasEnough;
         }
     }
 }

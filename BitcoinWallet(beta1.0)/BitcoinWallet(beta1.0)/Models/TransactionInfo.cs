@@ -1,4 +1,5 @@
-﻿using NBitcoin;
+﻿using BitcoinWallet_beta1._0_.Enums;
+using NBitcoin;
 using System.Collections.Generic;
 
 namespace BitcoinWallet_beta1._0_.Models
@@ -7,5 +8,6 @@ namespace BitcoinWallet_beta1._0_.Models
     {
         public List<OutputInfo> outputsInfo { get; set; }
         public Money TransactionFee { get; set; }
+        public TransactionActions transactionType { get; set; }
     }
 }
