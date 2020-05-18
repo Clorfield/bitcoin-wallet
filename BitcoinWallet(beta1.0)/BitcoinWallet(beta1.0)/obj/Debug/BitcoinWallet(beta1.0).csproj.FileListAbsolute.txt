@@ -37,3 +37,5 @@ D:\Bitcoin\BitcoinWallet(beta1.0)\BitcoinWallet(beta1.0)\obj\Debug\BitcoinWallet
 D:\Bitcoin\BitcoinWallet(beta1.0)\BitcoinWallet(beta1.0)\obj\Debug\BitcoinWallet(beta1.0).pdb
 D:\Bitcoin\BitcoinWallet(beta1.0)\BitcoinWallet(beta1.0)\bin\Debug\QBitNinja.Client.dll
 D:\Bitcoin\BitcoinWallet(beta1.0)\BitcoinWallet(beta1.0)\obj\Debug\BitcoinWallet_beta1._0_.TransactionInformation.resources
+D:\Bitcoin\BitcoinWallet(beta1.0)\BitcoinWallet(beta1.0)\bin\Debug\Zen.Barcode.Core.dll
+D:\Bitcoin\BitcoinWallet(beta1.0)\BitcoinWallet(beta1.0)\obj\Debug\BitcoinWallet_beta1._0_.QRCodeForm.resources

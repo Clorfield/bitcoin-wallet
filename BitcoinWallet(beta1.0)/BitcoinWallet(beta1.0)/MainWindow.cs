@@ -41,7 +41,7 @@ namespace BitcoinWallet_beta1._0_
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter && !string.IsNullOrEmpty(textBox1.Text))
+            if (e.KeyCode == Keys.Enter && !string.IsNullOrEmpty(textBox1.Text.Trim()))
             {
                 OpenTransactionInfoWindow();
             }
@@ -59,7 +59,7 @@ namespace BitcoinWallet_beta1._0_
 
         private void buttonGetTransactionInfo_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(textBox1.Text))
+            if (!string.IsNullOrEmpty(textBox1.Text.Trim()))
             {
                 OpenTransactionInfoWindow();
             }
@@ -75,7 +75,7 @@ namespace BitcoinWallet_beta1._0_
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(textBox2.Text) && !string.IsNullOrEmpty(textBox3.Text))
+            if (!string.IsNullOrEmpty(textBox2.Text.Trim()) && !string.IsNullOrEmpty(textBox3.Text.Trim()))
             {
                 CreateNewTransaction();
             }
@@ -153,9 +153,10 @@ namespace BitcoinWallet_beta1._0_
             }
         }
 
+        // get balance
         private void button2_Click(object sender, EventArgs e)
         {
-            string adress = textBoxBitcoinAdress.Text;
+            string adress = textBoxBitcoinAdress.Text.Trim();
             if (!String.IsNullOrEmpty(adress))
             {
                 decimal ballance = _moneyTransferBl.GetCustomBallance(adress);
@@ -163,6 +164,17 @@ namespace BitcoinWallet_beta1._0_
             } else
             {
                 MessageBox.Show($"Please type adress in adress field!");
+            }
+        }
+
+        // show QRCode for typed adress
+        private void qrCodeBtn_Click(object sender, EventArgs e)
+        {
+            var adress = textBoxBitcoinAdress.Text.Trim();
+            if (!String.IsNullOrEmpty(adress)) {
+                var qrCodeImage = QRCodeHelper.GenerateQRCodeFromAdress(adress);
+                QRCodeForm qrCodeForm = new QRCodeForm(qrCodeImage);
+                qrCodeForm.Show();
             }
         }
     }

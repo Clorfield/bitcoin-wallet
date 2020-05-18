@@ -29,7 +29,7 @@ namespace BitcoinWallet_beta1._0_.BL
             _networkType = networkType == NetworkTypes.TestNet ? Network.TestNet : Network.Main;
         }
 
-        //// create new transaction for bitcoin sending
+        //// create new transaction for bitcoin sending (test staff, non-working)
         //public void CreateNewTransaction(GetTransactionResponse transactionResponse, Script scriptPubKey, string recepientAdress)
         //{
         //    BitcoinAddress rcpAdress = GetRecepientAdress(recepientAdress);

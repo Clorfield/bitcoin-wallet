@@ -48,6 +48,7 @@
             this.buttonCreateTransaction = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.qrCodeBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -249,11 +250,23 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // qrCodeBtn
+            // 
+            this.qrCodeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qrCodeBtn.Location = new System.Drawing.Point(358, 50);
+            this.qrCodeBtn.Name = "qrCodeBtn";
+            this.qrCodeBtn.Size = new System.Drawing.Size(55, 20);
+            this.qrCodeBtn.TabIndex = 21;
+            this.qrCodeBtn.Text = "QRCode";
+            this.qrCodeBtn.UseVisualStyleBackColor = true;
+            this.qrCodeBtn.Click += new System.EventHandler(this.qrCodeBtn_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 332);
+            this.Controls.Add(this.qrCodeBtn);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.buttonCreateTransaction);
@@ -303,6 +316,7 @@
         private System.Windows.Forms.Button buttonCreateTransaction;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button qrCodeBtn;
     }
 }
 
