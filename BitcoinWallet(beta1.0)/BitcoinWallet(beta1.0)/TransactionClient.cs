@@ -129,7 +129,7 @@ namespace BitcoinWallet_beta1._0_
         // check if adress owner has enough coins to spend
         public bool HasEnoughCoins(Money totalOutAmount, BitcoinAddress adress)
         {
-            var unspentCoins =GetUnspentCoins(adress);
+            var unspentCoins = GetUnspentCoins(adress);
             HashSet<Coin> coinsToSpend = new HashSet<Coin>();
             var hasEnough = false;
             foreach (var coin in unspentCoins.OrderByDescending(x => x.Amount))

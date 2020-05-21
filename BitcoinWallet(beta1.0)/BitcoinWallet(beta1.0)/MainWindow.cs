@@ -2,8 +2,11 @@
 using BitcoinWallet_beta1._0_.Enums;
 using BitcoinWallet_beta1._0_.Helpers;
 using BitcoinWallet_beta1._0_.Models;
+using BitcoinWallet_beta1._0_.Models.JSON;
 using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BitcoinWallet_beta1._0_
@@ -165,6 +168,11 @@ namespace BitcoinWallet_beta1._0_
             {
                 MessageBox.Show($"Please type adress in adress field!");
             }
+            /*WebAPIHelper.Run(APIUrls.TestNetBitcoinAPIUrl);
+
+            var a = Task.Run(() => WebAPIHelper.GetAsync<AdressInfoResponse>(APIUrls.GetAdressInfoAPI(textBoxBitcoinAdress.Text.Trim()))).GetAwaiter().GetResult();
+            
+            MessageBox.Show(a.ToString());*/
         }
 
         // show QRCode for typed adress

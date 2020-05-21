@@ -53,6 +53,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -71,8 +74,11 @@
     <Compile Include="Enums\NetworkTypes.cs" />
     <Compile Include="Enums\TransactionActions.cs" />
     <Compile Include="Enums\TransactionResult.cs" />
+    <Compile Include="Helpers\AESEncryptionHelper.cs" />
+    <Compile Include="Helpers\APIUrls.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Helpers\QRCodeHelper.cs" />
+    <Compile Include="Helpers\WebAPIHelper.cs" />
     <Compile Include="Interfaces\IMoneyTransferBl.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
@@ -80,6 +86,7 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\JSON\AdressInfoResponse.cs" />
     <Compile Include="Models\OutputInfo.cs" />
     <Compile Include="Models\TransactionInfo.cs" />
     <Compile Include="Models\WalletDto.cs" />

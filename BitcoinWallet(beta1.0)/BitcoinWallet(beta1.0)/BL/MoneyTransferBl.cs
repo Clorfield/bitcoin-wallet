@@ -105,7 +105,5 @@ namespace BitcoinWallet_beta1._0_.BL
 
             return balance;
         }
-
-
     }
 }
