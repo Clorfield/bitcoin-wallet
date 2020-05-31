@@ -2,18 +2,15 @@
 using BitcoinWallet_beta1._0_.Enums;
 using BitcoinWallet_beta1._0_.Helpers;
 using BitcoinWallet_beta1._0_.Models;
-using BitcoinWallet_beta1._0_.Models.JSON;
 using System;
 using System.Drawing;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BitcoinWallet_beta1._0_
 {
     public partial class MainWindow : Form
     {
-        MoneyTransferBl _moneyTransferBl;
+        private MoneyTransferBl _moneyTransferBl;
 
         public MainWindow()
         {
@@ -46,7 +43,8 @@ namespace BitcoinWallet_beta1._0_
         {
             if (e.KeyCode == Keys.Enter && !string.IsNullOrEmpty(textBox1.Text.Trim()))
             {
-                OpenTransactionInfoWindow();
+                Currencies currency = radioBtnUAH.Checked ? Currencies.UAH : Currencies.BTC;
+                OpenTransactionInfoWindow(currency);
             }
         }
 
@@ -64,21 +62,22 @@ namespace BitcoinWallet_beta1._0_
         {
             if (!string.IsNullOrEmpty(textBox1.Text.Trim()))
             {
-                OpenTransactionInfoWindow();
+                Currencies currency = radioBtnUAH.Checked ? Currencies.UAH : Currencies.BTC;
+                OpenTransactionInfoWindow(currency);
             }
         }
 
-        private void OpenTransactionInfoWindow()
+        private void OpenTransactionInfoWindow(Currencies currency)
         {
             TransactionInfo transactionInfo = _moneyTransferBl._trClient.GetTransactionInfo(textBox1.Text, TransactionActions.ReceiveCoins);
 
-            TransactionInformation transactionForm = new TransactionInformation(transactionInfo);
+            TransactionInformation transactionForm = new TransactionInformation(transactionInfo, currency);
             transactionForm.Show();
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(textBox2.Text.Trim()) && !string.IsNullOrEmpty(textBox3.Text.Trim()))
+            if (!string.IsNullOrEmpty(textBox2.Text.Trim()) && textBox2.Text.Trim() != "Recipient adress" && !string.IsNullOrEmpty(textBox3.Text.Trim()))
             {
                 CreateNewTransaction();
             }
@@ -86,9 +85,11 @@ namespace BitcoinWallet_beta1._0_
 
         private void CreateNewTransaction()
         {
+            var currency = radioBtnUAH.Checked ? Currencies.UAH : Currencies.BTC;
             var coins = textBox3.Text;
-            var adress = textBoxBitcoinAdress.Text;
-            var transactionResult = _moneyTransferBl.CreateNewTransaction(adress, coins);
+            var senderAdress = textBoxBitcoinAdress.Text.Trim();
+            var rcpAdress = textBox2.Text.Trim();
+            var transactionResult = _moneyTransferBl.CreateNewTransaction(rcpAdress, senderAdress, coins, currency);
 
             switch(transactionResult)
             {
@@ -163,7 +164,12 @@ namespace BitcoinWallet_beta1._0_
             if (!String.IsNullOrEmpty(adress))
             {
                 decimal ballance = _moneyTransferBl.GetCustomBallance(adress);
-                MessageBox.Show($"Your balance: {ballance.ToString()}");
+                string currency = radioBtnUAH.Checked ? "UAH" : "BTC";
+                if (radioBtnUAH.Checked)
+                {
+                    ballance = _moneyTransferBl.ConvertBitcoinToUAH(ballance);
+                }
+                MessageBox.Show($"Your balance: {ballance.ToString()} {currency}");
             } else
             {
                 MessageBox.Show($"Please type adress in adress field!");
@@ -184,6 +190,16 @@ namespace BitcoinWallet_beta1._0_
                 QRCodeForm qrCodeForm = new QRCodeForm(qrCodeImage);
                 qrCodeForm.Show();
             }
+        }
+
+        private void radioBtnBTC_CheckedChanged(object sender, EventArgs e)
+        {
+            lblCurrency.Text = "BTC";
+        }
+
+        private void radioBtnUAH_CheckedChanged(object sender, EventArgs e)
+        {
+            lblCurrency.Text = "UAH";
         }
     }
 }

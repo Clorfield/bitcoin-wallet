@@ -1,11 +1,14 @@
 ﻿using BitcoinWallet_beta1._0_.Enums;
+using BitcoinWallet_beta1._0_.Helpers;
 using BitcoinWallet_beta1._0_.Interfaces;
 using BitcoinWallet_beta1._0_.Models;
+using BitcoinWallet_beta1._0_.Models.JSON;
 using NBitcoin;
 using QBitNinja.Client.Models;
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BitcoinWallet_beta1._0_.BL
 {
@@ -13,12 +16,17 @@ namespace BitcoinWallet_beta1._0_.BL
     {
         public Wallet _wallet { get; set; }
         public TransactionClient _trClient { get; set; }
+        public WebAPIHelper _bitcoinConverter { get; set; }
+
         private Network _networkType { get; set; } = Network.TestNet;
 
         public MoneyTransferBl(Wallet wallet, TransactionClient trClient)
         {
             _wallet = wallet;
             _trClient = trClient;
+
+            _bitcoinConverter = new WebAPIHelper();
+            _bitcoinConverter.Run(APIUrls.BitcoinRateAPIUrl);
         }
 
         // change network type
@@ -57,16 +65,20 @@ namespace BitcoinWallet_beta1._0_.BL
         //}
 
         // create new transaction 
-        public TransactionResult CreateNewTransaction(string recepientAdress, string bitcoinsAmount)
+        public TransactionResult CreateNewTransaction(string recepientAdress, string senderAdress, string bitcoinsAmount, Currencies currency)
         {
             BitcoinAddress rcpAdress = GetRecepientAdress(recepientAdress);
-            Money coins = new Money(Decimal.Parse(bitcoinsAmount, CultureInfo.InvariantCulture), MoneyUnit.BTC);
-            var enoughMoney = _trClient.HasEnoughCoins(coins, rcpAdress);
+            BitcoinAddress ownAdress = GetRecepientAdress(senderAdress);
+            var coinsInDecimal = Decimal.Parse(bitcoinsAmount, CultureInfo.InvariantCulture);
+            coinsInDecimal = currency == Currencies.UAH ? ConvertUAHToBitcoin(coinsInDecimal) : coinsInDecimal;
+            Money coins = new Money(coinsInDecimal, MoneyUnit.BTC);
+            var enoughMoney = _trClient.HasEnoughCoins(coins, ownAdress);
 
             if (!enoughMoney)
             {
                 return TransactionResult.NotEnoughMoney;
             }
+
 
             return TransactionResult.Success;
         }
@@ -104,6 +116,22 @@ namespace BitcoinWallet_beta1._0_.BL
             var balance = _trClient.GetBallance(adress);
 
             return balance;
+        }
+
+        // convert Bitcoin to UAH by todays exchange rate
+        public decimal ConvertBitcoinToUAH(decimal moneyInBTC)
+        {
+            var rate = Task.Run(() => _bitcoinConverter.GetAsync<BitcoinToUAHRateResponse>(APIUrls.GetBitcoinToUAHRateAPI())).GetAwaiter().GetResult();
+
+            return moneyInBTC * Convert.ToDecimal(rate.data.rate);
+        }
+
+        // convert UAH to Bitcoin by todays exchange rate
+        public decimal ConvertUAHToBitcoin(decimal moneyInUAH)
+        {
+            var rate = Task.Run(() => _bitcoinConverter.GetAsync<BitcoinToUAHRateResponse>(APIUrls.GetBitcoinToUAHRateAPI())).GetAwaiter().GetResult();
+
+            return moneyInUAH / Convert.ToDecimal(rate.data.rate);
         }
     }
 }

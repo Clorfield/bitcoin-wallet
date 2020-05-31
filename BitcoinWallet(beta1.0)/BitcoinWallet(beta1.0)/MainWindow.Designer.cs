@@ -30,12 +30,8 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.testNetBtn = new System.Windows.Forms.RadioButton();
-            this.mainNetBtn = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.textBoxBitcoinAdress = new System.Windows.Forms.TextBox();
             this.textBoxPublicKey = new System.Windows.Forms.TextBox();
             this.textBoxScriptPubKey = new System.Windows.Forms.TextBox();
@@ -49,7 +45,15 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.qrCodeBtn = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioBtnUAH = new System.Windows.Forms.RadioButton();
+            this.radioBtnBTC = new System.Windows.Forms.RadioButton();
+            this.mainNetBtn = new System.Windows.Forms.RadioButton();
+            this.testNetBtn = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblCurrency = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -72,41 +76,6 @@
             this.textBox1.TabIndex = 2;
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
-            // testNetBtn
-            // 
-            this.testNetBtn.AutoSize = true;
-            this.testNetBtn.Checked = true;
-            this.testNetBtn.Location = new System.Drawing.Point(6, 24);
-            this.testNetBtn.Name = "testNetBtn";
-            this.testNetBtn.Size = new System.Drawing.Size(63, 17);
-            this.testNetBtn.TabIndex = 3;
-            this.testNetBtn.TabStop = true;
-            this.testNetBtn.Text = "TestNet";
-            this.testNetBtn.UseVisualStyleBackColor = true;
-            this.testNetBtn.CheckedChanged += new System.EventHandler(this.testNetBtn_CheckedChanged);
-            // 
-            // mainNetBtn
-            // 
-            this.mainNetBtn.AutoSize = true;
-            this.mainNetBtn.Location = new System.Drawing.Point(6, 48);
-            this.mainNetBtn.Name = "mainNetBtn";
-            this.mainNetBtn.Size = new System.Drawing.Size(65, 17);
-            this.mainNetBtn.TabIndex = 4;
-            this.mainNetBtn.TabStop = true;
-            this.mainNetBtn.Text = "MainNet";
-            this.mainNetBtn.UseVisualStyleBackColor = true;
-            this.mainNetBtn.CheckedChanged += new System.EventHandler(this.mainNetBtn_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 16);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Network:";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -125,16 +94,6 @@
             this.label4.Size = new System.Drawing.Size(89, 20);
             this.label4.TabIndex = 9;
             this.label4.Text = "Adress info";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.testNetBtn);
-            this.panel1.Controls.Add(this.mainNetBtn);
-            this.panel1.Location = new System.Drawing.Point(474, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(75, 80);
-            this.panel1.TabIndex = 10;
             // 
             // textBoxBitcoinAdress
             // 
@@ -210,7 +169,7 @@
             this.textBox2.ForeColor = System.Drawing.Color.DarkGray;
             this.textBox2.Location = new System.Drawing.Point(16, 278);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(175, 20);
+            this.textBox2.Size = new System.Drawing.Size(132, 20);
             this.textBox2.TabIndex = 6;
             this.textBox2.Text = "Recipient adress";
             this.textBox2.Enter += new System.EventHandler(this.textBox2_Enter);
@@ -229,7 +188,7 @@
             // textBox3
             // 
             this.textBox3.ForeColor = System.Drawing.Color.DarkGray;
-            this.textBox3.Location = new System.Drawing.Point(215, 278);
+            this.textBox3.Location = new System.Drawing.Point(171, 278);
             this.textBox3.MaxLength = 30;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(137, 20);
@@ -261,11 +220,94 @@
             this.qrCodeBtn.UseVisualStyleBackColor = true;
             this.qrCodeBtn.Click += new System.EventHandler(this.qrCodeBtn_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioBtnUAH);
+            this.groupBox1.Controls.Add(this.radioBtnBTC);
+            this.groupBox1.Location = new System.Drawing.Point(434, 132);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(115, 71);
+            this.groupBox1.TabIndex = 22;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Currency";
+            // 
+            // radioBtnUAH
+            // 
+            this.radioBtnUAH.AutoSize = true;
+            this.radioBtnUAH.Location = new System.Drawing.Point(20, 44);
+            this.radioBtnUAH.Name = "radioBtnUAH";
+            this.radioBtnUAH.Size = new System.Drawing.Size(48, 17);
+            this.radioBtnUAH.TabIndex = 1;
+            this.radioBtnUAH.Text = "UAH";
+            this.radioBtnUAH.UseVisualStyleBackColor = true;
+            this.radioBtnUAH.CheckedChanged += new System.EventHandler(this.radioBtnUAH_CheckedChanged);
+            // 
+            // radioBtnBTC
+            // 
+            this.radioBtnBTC.AutoSize = true;
+            this.radioBtnBTC.Checked = true;
+            this.radioBtnBTC.Location = new System.Drawing.Point(20, 20);
+            this.radioBtnBTC.Name = "radioBtnBTC";
+            this.radioBtnBTC.Size = new System.Drawing.Size(46, 17);
+            this.radioBtnBTC.TabIndex = 0;
+            this.radioBtnBTC.TabStop = true;
+            this.radioBtnBTC.Text = "BTC";
+            this.radioBtnBTC.UseVisualStyleBackColor = true;
+            this.radioBtnBTC.CheckedChanged += new System.EventHandler(this.radioBtnBTC_CheckedChanged);
+            // 
+            // mainNetBtn
+            // 
+            this.mainNetBtn.AutoSize = true;
+            this.mainNetBtn.Location = new System.Drawing.Point(5, 44);
+            this.mainNetBtn.Name = "mainNetBtn";
+            this.mainNetBtn.Size = new System.Drawing.Size(65, 17);
+            this.mainNetBtn.TabIndex = 4;
+            this.mainNetBtn.TabStop = true;
+            this.mainNetBtn.Text = "MainNet";
+            this.mainNetBtn.UseVisualStyleBackColor = true;
+            this.mainNetBtn.CheckedChanged += new System.EventHandler(this.mainNetBtn_CheckedChanged);
+            // 
+            // testNetBtn
+            // 
+            this.testNetBtn.AutoSize = true;
+            this.testNetBtn.Checked = true;
+            this.testNetBtn.Location = new System.Drawing.Point(5, 21);
+            this.testNetBtn.Name = "testNetBtn";
+            this.testNetBtn.Size = new System.Drawing.Size(63, 17);
+            this.testNetBtn.TabIndex = 3;
+            this.testNetBtn.TabStop = true;
+            this.testNetBtn.Text = "TestNet";
+            this.testNetBtn.UseVisualStyleBackColor = true;
+            this.testNetBtn.CheckedChanged += new System.EventHandler(this.testNetBtn_CheckedChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.mainNetBtn);
+            this.groupBox2.Controls.Add(this.testNetBtn);
+            this.groupBox2.Location = new System.Drawing.Point(475, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(74, 79);
+            this.groupBox2.TabIndex = 23;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Network";
+            // 
+            // lblCurrency
+            // 
+            this.lblCurrency.AutoSize = true;
+            this.lblCurrency.Location = new System.Drawing.Point(314, 281);
+            this.lblCurrency.Name = "lblCurrency";
+            this.lblCurrency.Size = new System.Drawing.Size(28, 13);
+            this.lblCurrency.TabIndex = 24;
+            this.lblCurrency.Text = "BTC";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 332);
+            this.Controls.Add(this.lblCurrency);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.qrCodeBtn);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox3);
@@ -277,7 +319,6 @@
             this.Controls.Add(this.textBoxScriptPubKey);
             this.Controls.Add(this.textBoxPublicKey);
             this.Controls.Add(this.textBoxBitcoinAdress);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -287,8 +328,10 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainWindow";
             this.Text = "Bitcoin-wallet";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -298,12 +341,8 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.RadioButton testNetBtn;
-        private System.Windows.Forms.RadioButton mainNetBtn;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textBoxBitcoinAdress;
         private System.Windows.Forms.TextBox textBoxPublicKey;
         private System.Windows.Forms.TextBox textBoxScriptPubKey;
@@ -317,6 +356,13 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button qrCodeBtn;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioBtnUAH;
+        private System.Windows.Forms.RadioButton radioBtnBTC;
+        private System.Windows.Forms.RadioButton mainNetBtn;
+        private System.Windows.Forms.RadioButton testNetBtn;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lblCurrency;
     }
 }
 
